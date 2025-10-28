@@ -1,0 +1,59 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f9fafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.guidelines {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  margin: 15px 0;
+  font-size: 0.9rem;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.output {
+  margin-top: 20px;
+  font-weight: 500;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 10px;
+  border-radius: 8px;
+  min-height: 40px;
+}

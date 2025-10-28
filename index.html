@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Alt Text Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🖼️ Image Alt Text Generator (Gemini API)</h1>
+      <p class="guidelines">
+        Upload an image to automatically generate descriptive alt text (under
+        120 characters).
+      </p>
+
+      <input type="file" id="imageInput" accept="image/*" />
+      <button id="generateBtn">Generate Alt Text</button>
+
+      <div id="altOutput" class="output"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

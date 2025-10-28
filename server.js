@@ -1,13 +1,24 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import dotenv from "dotenv";
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "25mb" }));
 
-// 🔑 Replace this with your actual Google AI Studio API key
-const API_KEY = "AIzaSyA_cgnKqRYI3pv-6a-xru10Hqzsk3fva_Q";
+// ✅ Load from .env
+const API_KEY = process.env.GOOGLE_API_KEY;
+const API_URL = process.env.GEMINI_API_URL;
+const PORT = process.env.PORT || 3000;
+
+if (!API_KEY || !API_URL) {
+  console.error("❌ Missing API key or URL in .env file");
+  process.exit(1);
+}
 
 app.post("/generate-alt", async (req, res) => {
   try {
@@ -15,9 +26,6 @@ app.post("/generate-alt", async (req, res) => {
     if (!imageData || !mimeType) {
       return res.status(400).json({ error: "Missing image data or mime type" });
     }
-
-    // ✅ Using Gemini 2.5 Flash (multimodal, supports image input)
-    const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
     const payload = {
       contents: [
@@ -39,7 +47,7 @@ app.post("/generate-alt", async (req, res) => {
       ],
     };
 
-    const response = await fetch(endpoint, {
+    const response = await fetch(`${API_URL}?key=${API_KEY}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -59,6 +67,4 @@ app.post("/generate-alt", async (req, res) => {
   }
 });
 
-app.listen(3000, () =>
-  console.log("✅ Server running at http://localhost:3000")
-);
+app.listen(PORT, () => console.log(`✅ Server running at http://localhost:${PORT}`));
